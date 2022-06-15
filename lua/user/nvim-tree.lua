@@ -119,5 +119,8 @@ nvim_tree.setup {
 --  auto_resize = true,
 --  git_hl = 1,
 --  root_folder_modifier = ":t",
-
 }
+
+-- vim.cmd [[
+--   autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
+-- ]]

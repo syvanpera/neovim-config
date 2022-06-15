@@ -58,10 +58,26 @@ return packer.startup(function(use)
   use "goolord/alpha-nvim"
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim"
+  use "christoomey/vim-tmux-navigator"
+  use "norcalli/nvim-colorizer.lua"
+  use {
+    "folke/twilight.nvim",
+    config = function()
+      require("twilight").setup {
+        dimming = {
+            alpha = 0.5
+        }
+      }
+    end
+  }
+  use { "tpope/vim-surround" }
 
   -- Colorschemes
   -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
   use "lunarvim/darkplus.nvim"
+  use "navarasu/onedark.nvim"
+  use "folke/tokyonight.nvim"
+  use "rmehri01/onenord.nvim"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -83,6 +99,7 @@ return packer.startup(function(use)
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
+  use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
 
   -- Treesitter
   use {

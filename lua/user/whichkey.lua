@@ -79,24 +79,40 @@ local opts = {
 }
 
 local mappings = {
+  ["<TAB>"] = { "<c-^>", "Switch to last buffer"},
   ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
-  ["b"] = {
-    "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-    "Buffers",
+  b = {
+    name = "Buffers",
+    b = { "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_ivy{})<cr>",
+    "Show all" },
+    d = { "<cmd>bdelete<cr>",
+    "Delete" },
   },
-  ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-  ["w"] = { "<cmd>w!<CR>", "Save" },
-  ["q"] = { "<cmd>q!<CR>", "Quit" },
+  e = {
+    name = "Errors",
+    n = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next error" },
+    p = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Previous error" },
+    l = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "List errors" },
+  },
+  -- ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+  -- ["w"] = { "<cmd>w!<CR>", "Save" },
+  -- ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-  ["f"] = {
-    "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-    "Find files",
+  f = {
+    name = "Files",
+    f = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "Find files" },
+    r = { "<cmd>lua require('telescope.builtin').oldfiles()<cr>" , "Recent files" }
   },
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
-  ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
 
   p = {
+    name = "Projects",
+    p = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "List" },
+    f = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "Find files" }
+  },
+
+  P = {
     name = "Packer",
     c = { "<cmd>PackerCompile<cr>", "Compile" },
     i = { "<cmd>PackerInstall<cr>", "Install" },
@@ -151,7 +167,7 @@ local mappings = {
       "Prev Diagnostic",
     },
     l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-    q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
+    q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
     s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
     S = {
